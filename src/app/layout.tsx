@@ -15,8 +15,20 @@ import Script from "next/script";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "Techno Mech Engineers",
+    metadataBase: new URL('https://technomechengineers.in'),
+    title: {
+        default: "Techno Mech Engineers",
+        template: "%s | Techno Mech Engineers"
+    },
     description: "Precision Engineering Solutions",
+    openGraph: {
+        title: "Techno Mech Engineers",
+        description: "Precision Engineering Solutions",
+        url: 'https://technomechengineers.in',
+        siteName: 'Techno Mech Engineers',
+        locale: 'en_US',
+        type: 'website',
+    },
     icons: {
         icon: '/assets/logo.jpg',
         apple: '/assets/logo.jpg',
@@ -53,15 +65,19 @@ export default function RootLayout({
                 />
 
                 {/* Google Analytics (ga4) - Script 2 */}
-                <Script id="google-analytics" strategy="afterInteractive">
-                    {`
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('js', new Date());
+                <Script
+                    id="google-analytics"
+                    strategy="afterInteractive"
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
 
-                    gtag('config', 'G-KDN2DSMMB4');
-                    `}
-                </Script>
+                        gtag('config', 'G-KDN2DSMMB4');
+                        `,
+                    }}
+                />
             </head>
             <body className={inter.className} suppressHydrationWarning>
                 {/* Google Tag Manager (noscript) - Script 2 */}
