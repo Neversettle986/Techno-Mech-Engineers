@@ -11,6 +11,7 @@ import FallBeamBackground from "@/components/FallBeamBackground";
 import PageTransition from "@/components/PageTransition";
 
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -103,6 +104,7 @@ export default function RootLayout({
                             <Footer />
                             <Toaster />
                             <Chatbot />
+                            <Analytics />
                         </div>
                     </ClickSpark>
                 </LenisScroller>
