@@ -1,4 +1,4 @@
-import { GoogleGenAI } from '@google/genai';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 import { NextResponse } from 'next/server';
 import { COMPANY_NAME, PRODUCTS, SERVICES, COMPANY_ADDRESS, COMPANY_PHONE, COMPANY_EMAIL } from '@/constants';
 
@@ -38,33 +38,29 @@ export async function POST(req: Request) {
     try {
         const { messages, userMessage } = await req.json();
 
-        // Use server-side environment variable
-        // In Next.js, process.env.NEXT_PUBLIC_* is exposed to browser, 
-        // but we can also use non-public keys if set in Vercel. 
-        // For now, we reuse the existing key variable but access it securely on the server.
         const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY || process.env.GEMINI_API_KEY;
 
         if (!apiKey) {
             return NextResponse.json({ error: 'API Key not configured' }, { status: 500 });
         }
 
-        const ai = new GoogleGenAI({ apiKey });
-
-        const response = await ai.models.generateContent({
-            model: 'gemini-1.5-flash',
-            config: {
-                systemInstruction: generateContext(),
-            },
-            contents: [
-                ...messages.map((m: any) => ({
-                    role: m.role,
-                    parts: [{ text: m.text }]
-                })),
-                { role: 'user', parts: [{ text: userMessage.text }] }
-            ],
+        const genAI = new GoogleGenerativeAI(apiKey);
+        const model = genAI.getGenerativeModel({
+            model: "gemini-1.5-flash",
+            systemInstruction: generateContext(),
         });
 
-        const text = response.text || "I apologize, could you please repeat that?";
+        const chat = model.startChat({
+            history: messages.map((m: any) => ({
+                role: m.role,
+                parts: [{ text: m.text }]
+            }))
+        });
+
+        const result = await chat.sendMessage(userMessage.text);
+        const response = await result.response;
+        const text = response.text() || "I apologize, could you please repeat that?";
+
         return NextResponse.json({ text });
 
     } catch (error: any) {
