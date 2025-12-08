@@ -91,55 +91,31 @@ const Chatbot: React.FC = () => {
     setIsLoading(true);
 
     try {
-      // Robust API Key retrieval for local vs cloud environments
-      let apiKey = '';
-
-      // 1. Try standard process.env.API_KEY
-      try {
-        if (process.env.API_KEY) apiKey = process.env.API_KEY;
-      } catch (e) { }
-
-      // 2. Fallback to NEXT_PUBLIC_GEMINI_API_KEY (User's local .env variable)
-      if (!apiKey) {
-        try {
-          if (process.env.NEXT_PUBLIC_GEMINI_API_KEY) apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
-        } catch (e) { }
-      }
-
-      if (!apiKey) {
-        throw new Error("API Key is missing. Please check your .env file.");
-      }
-
-      const ai = new GoogleGenAI({ apiKey });
-
-      const response = await ai.models.generateContent({
-        model: 'gemini-1.5-flash',
-        config: {
-          systemInstruction: generateContext(),
-        },
-        contents: [
-          ...messages.map(m => ({
-            role: m.role,
-            parts: [{ text: m.text }]
-          })),
-          { role: 'user', parts: [{ text: userMessage.text }] }
-        ],
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          messages: messages.filter(m => m.role !== 'model' || m.text !== 'Hello! I am the AI assistant for Techno Mech Engineers. How can I assist you with our precision engineering products or services today?'),
+          userMessage
+        }),
       });
 
-      const text = response.text || "I apologize, could you please repeat that?";
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      const text = data.text;
 
       setMessages(prev => [...prev, { role: 'model', text }]);
 
     } catch (error: any) {
       console.error("Chat error:", error);
-      let errorMessage = "Connection error. Please contact us directly.";
+      let errorMessage = "Connection error. Please try again later.";
 
-      if (error.message && (error.message.includes("API Key") || error.message.includes("API_KEY"))) {
-        errorMessage = "System Error: API Key not configured correctly.";
-      } else if (error.message && (error.message.includes("404") || error.message.includes("not found"))) {
-        errorMessage = "API Error: Model not found or API key restricted. Please enable Generative Language API.";
-      } else if (error.message && error.message.includes("503")) {
-        errorMessage = "System Error: Model service overloaded. Please try again.";
+      if (error.message) {
+        errorMessage = `Error: ${error.message}`;
       }
 
       setMessages(prev => [...prev, { role: 'model', text: errorMessage }]);
