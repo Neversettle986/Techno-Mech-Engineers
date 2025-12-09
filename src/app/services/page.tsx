@@ -1,6 +1,7 @@
 "use client";
 import ShinyText from "@/components/ShinyText";
 import ChromaImage from '@/components/ChromaImage';
+import OrbitCard from '@/components/ui/OrbitCard';
 
 import React, { useRef } from 'react';
 import { Settings, Wrench, CheckCircle, Package, Ruler, Clock, Shield, Users, Phone, ArrowRight } from 'lucide-react';
@@ -273,7 +274,7 @@ const Services = () => {
                     </div>
                     <div className="grid md:grid-cols-4 gap-8 process-grid">
                         {processSteps.map((item, i) => (
-                            <div key={i} className="relative p-6 bg-gray-50 rounded-xl border border-gray-100 hover:border-[#DC143C]/30 transition-colors group process-card">
+                            <OrbitCard key={i} className="relative p-6 bg-gray-50 rounded-xl border border-gray-100 hover:border-[#DC143C]/30 transition-colors group process-card">
                                 <span className="absolute -top-4 -left-4 text-6xl font-black text-gray-200/50 group-hover:text-[#DC143C]/10 transition-colors pointer-events-none select-none">
                                     {item.step}
                                 </span>
@@ -287,7 +288,7 @@ const Services = () => {
                                 <p className="text-gray-600 relative z-10 text-sm leading-relaxed">
                                     {item.desc}
                                 </p>
-                            </div>
+                            </OrbitCard>
                         ))}
                     </div>
                 </div>

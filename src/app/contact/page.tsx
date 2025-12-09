@@ -9,6 +9,7 @@ import ShinyText from "@/components/ShinyText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import Script from 'next/script';
+import OrbitCard from '@/components/ui/OrbitCard';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -161,47 +162,49 @@ const ContactForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded-xl shadow-lg border border-gray-100" noValidate>
-            <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                    <label htmlFor="name" className={`block text-sm font-medium mb-2 transition-colors ${errors.name ? 'text-[#DC143C]' : 'text-gray-700'}`}>Full Name *</label>
-                    <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} disabled={isSubmitting} className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:outline-none transition-all ${errors.name ? 'border-[#DC143C] focus:ring-[#DC143C] bg-red-50 text-[#DC143C] placeholder-red-300' : 'border-gray-300 focus:ring-[#DC143C] focus:border-transparent'}`} placeholder="Enter your name" />
+        <OrbitCard className="border border-gray-100">
+            <form onSubmit={handleSubmit} className="space-y-6 relative z-10" noValidate>
+                <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label htmlFor="name" className={`block text-sm font-medium mb-2 transition-colors ${errors.name ? 'text-[#DC143C]' : 'text-gray-700'}`}>Full Name *</label>
+                        <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} disabled={isSubmitting} className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:outline-none transition-all ${errors.name ? 'border-[#DC143C] focus:ring-[#DC143C] bg-red-50 text-[#DC143C] placeholder-red-300' : 'border-gray-300 focus:ring-[#DC143C] focus:border-transparent'}`} placeholder="Enter your name" />
+                    </div>
+                    <div>
+                        <label htmlFor="email" className={`block text-sm font-medium mb-2 transition-colors ${errors.email ? 'text-[#DC143C]' : 'text-gray-700'}`}>Email Address *</label>
+                        <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} disabled={isSubmitting} className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:outline-none transition-all ${errors.email ? 'border-[#DC143C] focus:ring-[#DC143C] bg-red-50 text-[#DC143C] placeholder-red-300' : 'border-gray-300 focus:ring-[#DC143C] focus:border-transparent'}`} placeholder="Enter your email" />
+                    </div>
                 </div>
-                <div>
-                    <label htmlFor="email" className={`block text-sm font-medium mb-2 transition-colors ${errors.email ? 'text-[#DC143C]' : 'text-gray-700'}`}>Email Address *</label>
-                    <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} disabled={isSubmitting} className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:outline-none transition-all ${errors.email ? 'border-[#DC143C] focus:ring-[#DC143C] bg-red-50 text-[#DC143C] placeholder-red-300' : 'border-gray-300 focus:ring-[#DC143C] focus:border-transparent'}`} placeholder="Enter your email" />
-                </div>
-            </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label htmlFor="phone" className={`block text-sm font-medium mb-2 transition-colors ${errors.phone ? 'text-[#DC143C]' : 'text-gray-700'}`}>Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} disabled={isSubmitting} className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:outline-none transition-all ${errors.phone ? 'border-[#DC143C] focus:ring-[#DC143C] bg-red-50 text-[#DC143C] placeholder-red-300' : 'border-gray-300 focus:ring-[#DC143C] focus:border-transparent'}`} placeholder="Enter your phone number" />
+                    </div>
+                    <div>
+                        <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">Company Name</label>
+                        <input type="text" id="company" name="company" value={formData.company} onChange={handleChange} disabled={isSubmitting} className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#DC143C] focus:border-transparent outline-none transition-all" placeholder="Enter your company name" />
+                    </div>
+                </div>
+
                 <div>
-                    <label htmlFor="phone" className={`block text-sm font-medium mb-2 transition-colors ${errors.phone ? 'text-[#DC143C]' : 'text-gray-700'}`}>Phone Number *</label>
-                    <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} disabled={isSubmitting} className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:outline-none transition-all ${errors.phone ? 'border-[#DC143C] focus:ring-[#DC143C] bg-red-50 text-[#DC143C] placeholder-red-300' : 'border-gray-300 focus:ring-[#DC143C] focus:border-transparent'}`} placeholder="Enter your phone number" />
+                    <label htmlFor="subject" className={`block text-sm font-medium mb-2 transition-colors ${errors.subject ? 'text-[#DC143C]' : 'text-gray-700'}`}>Subject *</label>
+                    <input type="text" id="subject" name="subject" value={formData.subject} onChange={handleChange} disabled={isSubmitting} className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:outline-none transition-all ${errors.subject ? 'border-[#DC143C] focus:ring-[#DC143C] bg-red-50 text-[#DC143C] placeholder-red-300' : 'border-gray-300 focus:ring-[#DC143C] focus:border-transparent'}`} placeholder="Enter your subject" />
                 </div>
+
                 <div>
-                    <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">Company Name</label>
-                    <input type="text" id="company" name="company" value={formData.company} onChange={handleChange} disabled={isSubmitting} className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#DC143C] focus:border-transparent outline-none transition-all" placeholder="Enter your company name" />
+                    <label htmlFor="message" className={`block text-sm font-medium mb-2 transition-colors ${errors.message ? 'text-[#DC143C]' : 'text-gray-700'}`}>Message *</label>
+                    <textarea id="message" name="message" rows={6} value={formData.message} onChange={handleChange} disabled={isSubmitting} className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:outline-none transition-all resize-none ${errors.message ? 'border-[#DC143C] focus:ring-[#DC143C] bg-red-50 text-[#DC143C] placeholder-red-300' : 'border-gray-300 focus:ring-[#DC143C] focus:border-transparent'}`} placeholder="Enter your message"></textarea>
                 </div>
-            </div>
 
-            <div>
-                <label htmlFor="subject" className={`block text-sm font-medium mb-2 transition-colors ${errors.subject ? 'text-[#DC143C]' : 'text-gray-700'}`}>Subject *</label>
-                <input type="text" id="subject" name="subject" value={formData.subject} onChange={handleChange} disabled={isSubmitting} className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:outline-none transition-all ${errors.subject ? 'border-[#DC143C] focus:ring-[#DC143C] bg-red-50 text-[#DC143C] placeholder-red-300' : 'border-gray-300 focus:ring-[#DC143C] focus:border-transparent'}`} placeholder="Enter your subject" />
-            </div>
-
-            <div>
-                <label htmlFor="message" className={`block text-sm font-medium mb-2 transition-colors ${errors.message ? 'text-[#DC143C]' : 'text-gray-700'}`}>Message *</label>
-                <textarea id="message" name="message" rows={6} value={formData.message} onChange={handleChange} disabled={isSubmitting} className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:outline-none transition-all resize-none ${errors.message ? 'border-[#DC143C] focus:ring-[#DC143C] bg-red-50 text-[#DC143C] placeholder-red-300' : 'border-gray-300 focus:ring-[#DC143C] focus:border-transparent'}`} placeholder="Enter your message"></textarea>
-            </div>
-
-            <Button type="submit" disabled={isSubmitting} className="w-full bg-[#DC143C] hover:bg-[#B01030] text-white py-6 text-lg group disabled:opacity-70 disabled:cursor-not-allowed">
-                <div className="flex items-center justify-center gap-2">
-                    {isSubmitting ? 'Sending Message...' : 'Send Message'}
-                    {!isSubmitting && <Send className="group-hover:translate-x-1 transition-transform" size={20} />}
-                </div>
-            </Button>
-            <p className="text-xs text-gray-400 text-center mt-2">Protected by reCAPTCHA</p>
-        </form>
+                <Button type="submit" disabled={isSubmitting} className="w-full bg-[#DC143C] hover:bg-[#B01030] text-white py-6 text-lg group disabled:opacity-70 disabled:cursor-not-allowed">
+                    <div className="flex items-center justify-center gap-2">
+                        {isSubmitting ? 'Sending Message...' : 'Send Message'}
+                        {!isSubmitting && <Send className="group-hover:translate-x-1 transition-transform" size={20} />}
+                    </div>
+                </Button>
+                <p className="text-xs text-gray-400 text-center mt-2">Protected by reCAPTCHA</p>
+            </form>
+        </OrbitCard>
     );
 };
 
@@ -286,13 +289,13 @@ const ContactContent = () => {
                                 {contactInfo.map((info, index) => {
                                     const Icon = info.icon;
                                     return (
-                                        <div key={index} className="bg-white p-10 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center gap-6 border border-gray-100 contact-card">
-                                            <div className="w-14 h-14 bg-[#DC143C]/10 rounded-full flex items-center justify-center flex-shrink-0"><Icon className="text-[#DC143C]" size={24} /></div>
-                                            <div className="text-left">
+                                        <OrbitCard key={index} className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center gap-6 border border-gray-100 contact-card">
+                                            <div className="w-14 h-14 bg-[#DC143C]/10 rounded-full flex items-center justify-center flex-shrink-0 relative z-20"><Icon className="text-[#DC143C]" size={24} /></div>
+                                            <div className="text-left relative z-20">
                                                 <span className="block font-bold text-[#1F2937] text-sm uppercase tracking-wide mb-1">{info.title}</span>
                                                 {info.link ? <a href={info.link} target={info.icon === MapPin ? "_blank" : undefined} rel={info.icon === MapPin ? "noopener noreferrer" : undefined} className="text-gray-600 hover:text-[#DC143C] transition-colors text-base font-medium break-words">{info.details}</a> : <p className="text-gray-600 text-base font-medium break-words">{info.details}</p>}
                                             </div>
-                                        </div>
+                                        </OrbitCard>
                                     );
                                 })}
                             </div>
@@ -315,13 +318,15 @@ const ContactContent = () => {
                             { q: "What file formats do you accept for quotes?", a: "We accept most standard CAD formats including STEP (.stp), IGES (.igs), SolidWorks (.sldprt), and PDF for 2D drawings with tolerances." },
                             { q: "Do you offer material certification?", a: "Absolutely. We can provide material test reports (MTR) and quality inspection reports upon request to ensure full traceability and compliance." },
                         ].map((faq, index) => (
-                            <details key={index} className="group border border-gray-200 rounded-lg bg-gray-50 [&_summary::-webkit-details-marker]:hidden faq-item open:bg-white open:ring-1 open:ring-[#DC143C]/20 transition-all duration-300">
-                                <summary className="flex cursor-pointer items-center justify-between gap-1.5 p-6 text-[#1F2937]">
-                                    <h3 className="font-semibold text-lg">{faq.q}</h3>
-                                    <span className="shrink-0 rounded-full bg-white p-1.5 text-gray-500 sm:p-3 group-open:-rotate-180 transition-transform shadow-sm"><ChevronDown size={20} /></span>
-                                </summary>
-                                <div className="px-6 pb-6 leading-relaxed text-gray-600">{faq.a}</div>
-                            </details>
+                            <OrbitCard key={index} className="group border border-gray-200 rounded-lg bg-gray-50 faq-item transition-all duration-300">
+                                <details className="group [&_summary::-webkit-details-marker]:hidden open:bg-transparent">
+                                    <summary className="flex cursor-pointer items-center justify-between gap-1.5 p-1 text-[#1F2937] relative z-20">
+                                        <h3 className="font-semibold text-lg">{faq.q}</h3>
+                                        <span className="shrink-0 rounded-full bg-white p-1.5 text-gray-500 sm:p-3 group-open:-rotate-180 transition-transform shadow-sm"><ChevronDown size={20} /></span>
+                                    </summary>
+                                    <div className="pt-4 pb-2 leading-relaxed text-gray-600 relative z-20">{faq.a}</div>
+                                </details>
+                            </OrbitCard>
                         ))}
                     </div>
                 </div>

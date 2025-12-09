@@ -9,6 +9,7 @@ import LenisScroller from "@/components/LenisScroller";
 import ClickSpark from "@/components/ClickSpark";
 import FallBeamBackground from "@/components/FallBeamBackground";
 import PageTransition from "@/components/PageTransition";
+import CookieConsent from "@/components/CookieConsent";
 
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
@@ -105,6 +106,7 @@ export default function RootLayout({
                             <Toaster />
                             {/* <Chatbot /> */}
                             <Analytics />
+                            <CookieConsent />
                         </div>
                     </ClickSpark>
                 </LenisScroller>
