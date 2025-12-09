@@ -3,13 +3,22 @@ import React, { useState, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Cookies from "js-cookie";
+import { generateUserId } from "@/lib/generateUserId";
+import { generateVisitId } from "@/lib/generateVisitId";
+
+const USER_ID_COOKIE_NAME = "userId";
+const VISIT_ID_COOKIE_NAME = "visitId";
 
 const CookieConsent = () => {
     // Default to TRUE (Visible/Blocked) to prevent flash of content
     const [isVisible, setIsVisible] = useState(true);
+    const [mounted, setMounted] = useState(false);
     const pathname = usePathname();
 
     useEffect(() => {
+        setMounted(true);
+
         // Allow access to privacy policy without consent
         if (pathname === '/privacy-policy') {
             setIsVisible(false);
@@ -34,9 +43,34 @@ const CookieConsent = () => {
         sessionStorage.setItem("cookie_consent_accepted", "true");
         setIsVisible(false);
         document.body.style.overflow = "unset";
+
+        // Set persistent User ID cookie upon acceptance
+        let userId = Cookies.get(USER_ID_COOKIE_NAME);
+        if (!userId) {
+            userId = generateUserId();
+            Cookies.set(USER_ID_COOKIE_NAME, userId, {
+                expires: 365,
+                path: "/",
+                sameSite: "Lax",
+                secure: true,
+            });
+            console.log("New userId created on consent:", userId);
+        } else {
+            console.log("Existing userId confirmed:", userId);
+        }
+
+        // Set session Visit ID cookie upon acceptance
+        const visitId = generateVisitId();
+        Cookies.set(VISIT_ID_COOKIE_NAME, visitId, {
+            // No expires = session cookie
+            path: "/",
+            sameSite: "Lax",
+            secure: true,
+        });
+        console.log("New visitId created for this session:", visitId);
     };
 
-    if (!isVisible) return null;
+    if (!mounted || !isVisible) return null;
 
     return (
         <section className="fixed inset-0 z-[9999] p-4 flex items-center justify-center bg-black/80 backdrop-blur-md h-screen w-screen overflow-hidden touch-none">

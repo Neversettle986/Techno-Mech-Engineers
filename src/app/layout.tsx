@@ -106,11 +106,12 @@ export default function RootLayout({
                             <Toaster />
                             {/* <Chatbot /> */}
                             <Analytics />
-                            <CookieConsent />
                         </div>
                     </ClickSpark>
                 </LenisScroller>
+                <CookieConsent />
             </body>
         </html>
     );
 }
+

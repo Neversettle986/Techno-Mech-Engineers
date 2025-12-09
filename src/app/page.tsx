@@ -13,6 +13,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useRef } from 'react';
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
@@ -29,25 +30,25 @@ const Home = () => {
         {
             title: 'Precision Components',
             description: 'High-tolerance custom machined parts for specialized industrial applications.',
-            image: 'https://images.unsplash.com/photo-1565439360986-19aa82a0b411?auto=format&fit=crop&q=80',
+            image: '/assets/precision-component.webp',
             borderColor: '#DC143C'
         },
         {
             title: 'Metal Washers',
             description: 'Durable industrial washers available in various materials and specifications.',
-            image: 'https://images.unsplash.com/photo-1621252179027-94459d27d3ee?auto=format&fit=crop&q=80',
+            image: '/assets/metal-washers.webp',
             borderColor: '#DC143C'
         },
         {
             title: 'Industrial Springs',
             description: 'Custom-designed springs engineered for reliability and high performance.',
-            image: 'https://images.unsplash.com/photo-1598555815610-c4464c20f18a?auto=format&fit=crop&q=80',
+            image: '/assets/industrial-springs.webp',
             borderColor: '#DC143C'
         },
         {
             title: 'Pipe Fittings',
             description: 'Robust pipe fittings ensuring leak-proof connections for fluid systems.',
-            image: 'https://images.unsplash.com/photo-1535050804459-05558a60210f?auto=format&fit=crop&q=80',
+            image: '/assets/pipe-fitting.webp',
             borderColor: '#DC143C'
         }
     ];
@@ -172,27 +173,29 @@ const Home = () => {
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 products-grid">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 products-grid">
                         {productCategories.map((product, index) => (
                             <div
                                 key={index}
-                                className="bg-white border-2 border-slate-100 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 product-card group"
+                                className="bg-white border-2 border-slate-100 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 product-card group h-full flex flex-col"
                             >
-                                <div className="h-48 relative overflow-hidden bg-gray-100">
+                                <div className="h-56 relative overflow-hidden bg-gray-100">
                                     <ChromaImage
                                         src={product.image}
                                         alt={product.title}
                                         className="w-full h-full"
-                                        imgClassName="object-cover"
+                                        imgClassName="object-cover transition-transform duration-500 group-hover:scale-110"
                                         borderColor={product.borderColor}
                                     />
                                 </div>
-                                <div className="p-6">
-                                    <span className="block font-semibold text-lg text-[#1F2937] mb-2">{product.title}</span>
-                                    <p className="text-gray-600 text-sm mb-4">{product.description}</p>
-                                    <Link href="/products" className="text-[#DC143C] hover:text-[#B01030] font-medium text-sm flex items-center gap-2 group">
+                                <div className="p-6 flex-grow flex flex-col justify-between">
+                                    <div>
+                                        <span className="block font-bold text-xl text-[#1F2937] mb-3">{product.title}</span>
+                                        <p className="text-gray-600 text-base mb-6 leading-relaxed">{product.description}</p>
+                                    </div>
+                                    <Link href="/products" className="text-[#DC143C] hover:text-[#B01030] font-bold text-base flex items-center gap-2 group/link self-start">
                                         Learn More
-                                        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                                        <ArrowRight size={18} className="group-hover/link:translate-x-1 transition-transform" />
                                     </Link>
                                 </div>
                             </div>

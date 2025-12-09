@@ -2,12 +2,14 @@
 
 import React from "react";
 
-type OrbitCardProps = {
+interface OrbitCardProps {
   children: React.ReactNode;
-  className?: string;
-};
+  className?: string; // For the outer wrapper
+  contentClassName?: string; // For the inner container
+  style?: React.CSSProperties;
+}
 
-const OrbitCard: React.FC<OrbitCardProps> = ({ children, className }) => {
+const OrbitCard: React.FC<OrbitCardProps> = ({ children, className, contentClassName, style }) => {
   return (
     <div className={`relative ${className} rounded-xl`}>
       {/* Glowing shadow background */}
@@ -18,7 +20,7 @@ const OrbitCard: React.FC<OrbitCardProps> = ({ children, className }) => {
       </div>
 
       {/* Card Content */}
-      <div className="relative z-10 rounded-xl bg-background p-6 ">
+      <div className={`relative z-10 rounded-xl bg-background ${contentClassName || "p-6"}`}>
         {children}
       </div>
 
