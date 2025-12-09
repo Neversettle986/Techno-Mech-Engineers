@@ -4,7 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
-import Chatbot from "@/components/Chatbot";
+// import Chatbot from "@/components/Chatbot";
 import LenisScroller from "@/components/LenisScroller";
 import ClickSpark from "@/components/ClickSpark";
 import FallBeamBackground from "@/components/FallBeamBackground";
@@ -103,7 +103,7 @@ export default function RootLayout({
                             </div>
                             <Footer />
                             <Toaster />
-                            <Chatbot />
+                            {/* <Chatbot /> */}
                             <Analytics />
                         </div>
                     </ClickSpark>
