@@ -54,32 +54,34 @@ const Navbar = () => {
     return (
         <nav ref={navRef} className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'
             }`}>
-            <div className="bg-[#DC143C] text-white py-2 px-4 md:px-8">
-                <div className="max-w-7xl mx-auto flex justify-between items-center text-sm">
-                    <div className="flex items-center gap-4">
-                        <a href="tel:+918309862581" className="flex items-center gap-2 hover:text-gray-200 transition-colors">
-                            <Phone size={14} />
-                            <span className="hidden sm:inline">+91 83098 62581</span>
+            <div className="bg-[#DC143C] text-white py-1.5 md:py-2 px-4 md:px-8">
+                <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1 sm:gap-0 text-xs md:text-sm">
+                    <div className="flex items-center gap-3 md:gap-4 flex-wrap">
+                        <a href="tel:+918309862581" className="flex items-center gap-1.5 md:gap-2 hover:text-gray-200 transition-colors">
+                            <Phone size={12} className="md:hidden" />
+                            <Phone size={14} className="hidden md:block" />
+                            <span className="hidden sm:inline text-xs md:text-sm">+91 83098 62581</span>
                         </a>
-                        <a href="mailto:technomech6@gmail.com" className="flex items-center gap-2 hover:text-gray-200 transition-colors">
-                            <Mail size={14} />
-                            <span className="hidden sm:inline">technomech6@gmail.com</span>
+                        <a href="mailto:technomech6@gmail.com" className="flex items-center gap-1.5 md:gap-2 hover:text-gray-200 transition-colors">
+                            <Mail size={12} className="md:hidden" />
+                            <Mail size={14} className="hidden md:block" />
+                            <span className="hidden sm:inline text-xs md:text-sm">technomech6@gmail.com</span>
                         </a>
                     </div>
-                    <div className="text-xs hidden md:block">
+                    <div className="text-[10px] md:text-xs font-medium absolute right-4">
                         GST: 36ABCDE1234F1Z5
                     </div>
                 </div>
             </div>
 
-            <div className="max-w-7xl mx-auto px-4 md:px-8">
-                <div className="flex justify-between items-center h-20">
-                    <Link href="/" className="flex items-center gap-3 group">
+            <div className="max-w-7xl mx-auto px-2 md:px-8">
+                <div className="flex justify-between items-center h-24 md:h-20">
+                    <Link href="/" className="flex items-center gap-3 md:gap-4 group">
 
                         <img
                             src="/assets/logo.jpg"
                             alt="Techno Mech Engineers Logo"
-                            className="h-12 w-auto transition-transform duration-300 group-hover:scale-105"
+                            className="h-16 md:h-12 w-auto transition-transform duration-300 group-hover:scale-105"
                         />
                         <div className="hidden lg:block">
                             <div className="text-xl font-bold text-[#1F2937]">
