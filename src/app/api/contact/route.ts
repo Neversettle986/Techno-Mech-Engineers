@@ -75,7 +75,11 @@ export async function POST(request: Request) {
             emailPromises.push(sendEmail({
                 to: body.email,
                 subject: 'We received your message - Techno Mech Engineers',
-                html: generateUserEmail(body.name)
+                html: generateUserEmail(body.name, {
+                    phone: body.phone,
+                    email: body.email,
+                    subject: body.subject
+                })
             }));
         }
 

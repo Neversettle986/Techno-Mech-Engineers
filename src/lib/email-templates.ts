@@ -1,5 +1,5 @@
 
-export const generateUserEmail = (name: string): string => {
+export const generateUserEmail = (name: string, details: any): string => {
     return `
     <!DOCTYPE html>
     <html>
@@ -7,57 +7,68 @@ export const generateUserEmail = (name: string): string => {
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
-            body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; background-color: #f4f4f4; }
-            .container { max-width: 600px; margin: 40px auto; background-color: #ffffff; overflow: hidden; }
-            .header { background-color: #000000; padding: 40px 20px; text-align: center; }
-            .logo { max-height: 50px; }
-            .content { padding: 40px 40px; }
-            .greeting { font-size: 24px; font-weight: bold; margin-bottom: 20px; color: #111; }
-            .message { color: #555; margin-bottom: 30px; }
-            .details-box { background-color: #f9f9f9; padding: 20px; border-radius: 4px; margin-bottom: 30px; }
-            .detail-row { margin-bottom: 15px; }
-            .detail-label { font-size: 12px; text-transform: uppercase; color: #888; font-weight: bold; display: block; margin-bottom: 5px; }
-            .detail-value { font-size: 16px; color: #333; font-weight: 500; }
-            .cta-button { display: block; width: 100%; background-color: #000000; color: #ffffff; text-align: center; padding: 15px 0; text-decoration: none; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; font-size: 14px; border-radius: 4px; margin-top: 20px; }
-            .footer { background-color: #1a1a1a; padding: 40px 20px; text-align: center; color: #666; font-size: 12px; }
-            .footer p { margin: 5px 0; }
-            .social-links { margin-bottom: 20px; }
-            .social-icon { display: inline-block; width: 30px; height: 30px; background-color: #333; border-radius: 50%; margin: 0 5px; line-height: 30px; color: #fff; text-decoration: none; }
+            body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; background-color: #f9f9f9; }
+            .container { max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); overflow: hidden; }
+            .header { padding: 30px; text-align: center; border-bottom: 3px solid #DC143C; background-color: #ffffff; }
+            .logo { max-height: 70px; width: auto; }
+            .content { padding: 40px; }
+            .greeting { font-size: 22px; color: #111; margin-bottom: 20px; font-weight: 600; }
+            .text { color: #555; margin-bottom: 15px; font-size: 16px; }
+            .summary-box { background-color: #fcfcfc; border: 1px solid #eee; border-radius: 6px; padding: 25px; margin: 30px 0; }
+            .summary-title { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: #DC143C; font-weight: bold; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+            .summary-item { margin-bottom: 10px; display: flex; }
+            .summary-label { font-weight: 600; width: 80px; color: #444; font-size: 14px; }
+            .summary-value { color: #333; flex: 1; font-size: 14px; }
+            .btn-container { text-align: center; margin-top: 30px; }
+            .button { display: inline-block; background-color: #DC143C; color: white; padding: 14px 28px; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 16px; transition: background-color 0.3s; box-shadow: 0 4px 6px rgba(220, 20, 60, 0.2); }
+            .button:hover { background-color: #b91032; }
+            .footer { background-color: #f1f1f1; padding: 25px; text-align: center; color: #888; font-size: 13px; }
+            .footer a { color: #888; text-decoration: none; }
         </style>
     </head>
     <body>
         <div class="container">
             <div class="header">
-                 <!-- Replace with absolute URL in production if possible, currently pointing to generic placeholder or potential public asset link -->
-                 <img src="https://technomechengineers.in/assets/logo.jpg" alt="Techno Mech Engineers" class="logo" style="max-height: 60px; border-radius: 4px;">
+                 <img src="https://technomechengineers.in/assets/logo.jpg" alt="Techno Mech Engineers" class="logo">
             </div>
             <div class="content">
-                <div class="greeting">${name}, thank you for contacting us.</div>
-                <div class="message">
-                    <p>We have received your message and our team is currently reviewing your inquiry. You will receive an update from us shortly regarding your request.</p>
+                <div class="greeting">Hello ${name},</div>
+                
+                <p class="text">Thank you for choosing <strong>Techno Mech Engineers</strong>. We have successfully received your inquiry and truly appreciate the opportunity to assist you.</p>
+                
+                <p class="text">Our team is currently reviewing the details you submitted. We are committed to providing top-quality industrial solutions and will be in touch with you shortly to discuss your requirements.</p>
+
+                <div class="summary-box">
+                    <div class="summary-title">Your Submission Details</div>
+                    <div class="summary-item">
+                        <span class="summary-label">Name:</span>
+                        <span class="summary-value">${name}</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Phone:</span>
+                        <span class="summary-value">${details.phone}</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Email:</span>
+                        <span class="summary-value">${details.email}</span>
+                    </div>
+                    ${details.subject ? `
+                    <div class="summary-item">
+                        <span class="summary-label">Subject:</span>
+                        <span class="summary-value">${details.subject}</span>
+                    </div>` : ''}
                 </div>
 
-                <div class="details-box">
-                     <div class="detail-row">
-                        <span class="detail-label">Inquiry ID</span>
-                        <span class="detail-value">REQ-${Math.floor(Math.random() * 1000000)}</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Status</span>
-                        <span class="detail-value" style="color: #2e7d32;">Received</span>
-                    </div>
-                </div>
+                <p class="text">In the meantime, we invite you to explore our comprehensive range of products and services.</p>
 
-                <a href="https://technomechengineers.in" class="cta-button">Visit Our Website</a>
+                <div class="btn-container">
+                    <a href="https://technomechengineers.in/products" class="button">View Our Products</a>
+                </div>
             </div>
             <div class="footer">
-                <div class="social-links">
-                    <!-- Placeholder placeholders -->
-                    <span style="color: #444;">&bull;</span>
-                </div>
-                <p>Techno Mech Engineers</p>
+                <p>&copy; ${new Date().getFullYear()} Techno Mech Engineers.</p>
                 <p>Hyderabad, Telangana, India</p>
-                <p style="margin-top: 20px; font-size: 10px; color: #444;">You received this email because you contacted us via our website.</p>
+                <p><a href="https://technomechengineers.in">www.technomechengineers.in</a></p>
             </div>
         </div>
     </body>
@@ -72,65 +83,58 @@ export const generateAdminEmail = (submission: any): string => {
     <head>
         <meta charset="utf-8">
         <style>
-            body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; background-color: #f4f4f4; }
-            .container { max-width: 600px; margin: 40px auto; background-color: #ffffff; }
-            .header { background-color: #000000; padding: 30px 20px; text-align: center; }
-            .header h1 { color: #ffffff; font-size: 20px; margin: 0; text-transform: uppercase; letter-spacing: 1px; }
-            .content { padding: 40px; }
-            .section-title { font-size: 14px; text-transform: uppercase; color: #888; font-weight: bold; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 20px; }
-            .data-group { margin-bottom: 20px; }
-            .label { font-weight: bold; color: #000; display: block; margin-bottom: 5px; }
-            .value { color: #555; background: #fafafa; padding: 10px; border-radius: 4px; border: 1px solid #eee; }
-            .footer { background-color: #f9f9f9; padding: 20px; text-align: center; font-size: 12px; color: #888; border-top: 1px solid #eee; }
+            body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; background-color: #f4f4f4; }
+            .container { max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); overflow: hidden; }
+            .header { background-color: #1a1a1a; color: white; padding: 20px; text-align: center; }
+            .content { padding: 30px; }
+            .row { border-bottom: 1px solid #eee; padding: 12px 0; display: flex; }
+            .label { font-weight: bold; width: 100px; color: #555; }
+            .value { flex: 1; color: #000; }
+            .message-box { background: #f9f9f9; padding: 15px; border-left: 4px solid #DC143C; margin-top: 10px; border-radius: 4px; }
+            .footer { background-color: #f9f9f9; padding: 15px; text-align: center; font-size: 12px; color: #888; }
         </style>
     </head>
     <body>
         <div class="container">
             <div class="header">
-                <h1>New Lead Notification</h1>
+                <h2 style="margin:0;">New Website Inquiry</h2>
             </div>
             <div class="content">
-                <div class="section-title">Submission Details</div>
-                
-                <div class="data-group">
-                    <span class="label">Name</span>
+                <div class="row">
+                    <div class="label">Name</div>
                     <div class="value">${submission.name}</div>
                 </div>
-                
-                <div class="data-group">
-                    <span class="label">Subject</span>
-                    <div class="value">${submission.subject}</div>
+                 <div class="row">
+                    <div class="label">Date</div>
+                    <div class="value">${new Date().toLocaleString()}</div>
                 </div>
-
-                <div class="data-group">
-                     <span class="label">Status</span>
-                     <div style="display:inline-block; padding: 5px 10px; background-color: #e3f2fd; color: #1565c0; border-radius: 12px; font-size: 12px; font-weight: bold;">New Inquiry</div>
+                <div class="row">
+                    <div class="label">Email</div>
+                    <div class="value"><a href="mailto:${submission.email}">${submission.email}</a></div>
                 </div>
-
-                <div class="section-title" style="margin-top: 30px;">Contact Information</div>
-                
-                <div class="data-group">
-                    <span class="label">Email</span>
-                    <div class="value"><a href="mailto:${submission.email}" style="color: #DC143C; text-decoration: none;">${submission.email}</a></div>
-                </div>
-                
-                <div class="data-group">
-                    <span class="label">Phone</span>
+                <div class="row">
+                    <div class="label">Phone</div>
                     <div class="value">${submission.phone}</div>
                 </div>
-
                 ${submission.company ? `
-                <div class="data-group">
-                    <span class="label">Company</span>
+                <div class="row">
+                    <div class="label">Company</div>
                     <div class="value">${submission.company}</div>
                 </div>` : ''}
-
-                <div class="section-title" style="margin-top: 30px;">Message</div>
-                <div class="value" style="min-height: 100px; white-space: pre-wrap;">${submission.message}</div>
+                <div class="row">
+                    <div class="label">Subject</div>
+                    <div class="value">${submission.subject}</div>
+                </div>
+                
+                <div style="margin-top: 20px;">
+                    <strong style="color: #555;">Message:</strong>
+                    <div class="message-box">
+                        ${submission.message.replace(/\n/g, '<br>')}
+                    </div>
+                </div>
             </div>
-            <div class="footer">
-                <p>Received via Techno Mech Engineer's Contact Form</p>
-                <p>${new Date().toLocaleString()}</p>
+             <div class="footer">
+                <p>Techno Mech Admin Notification</p>
             </div>
         </div>
     </body>
