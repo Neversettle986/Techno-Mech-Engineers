@@ -15,9 +15,10 @@ interface SendEmailProps {
     to: string | string[];
     subject: string;
     html: string;
+    replyTo?: string;
 }
 
-export const sendEmail = async ({ to, subject, html }: SendEmailProps) => {
+export const sendEmail = async ({ to, subject, html, replyTo }: SendEmailProps) => {
     const resend = getResendClient();
     if (!resend) return { success: false, error: 'Missing API Key' };
 
@@ -29,6 +30,7 @@ export const sendEmail = async ({ to, subject, html }: SendEmailProps) => {
             to,
             subject,
             html,
+            replyTo: replyTo
         });
 
         if (data.error) {

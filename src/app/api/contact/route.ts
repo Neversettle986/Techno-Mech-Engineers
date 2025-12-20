@@ -79,7 +79,8 @@ export async function POST(request: Request) {
                     phone: body.phone,
                     email: body.email,
                     subject: body.subject
-                })
+                }),
+                replyTo: 'technomech6@gmail.com'
             }));
         }
 
