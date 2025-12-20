@@ -63,7 +63,7 @@ export default function Hero() {
             </h1>
             <p className="text-xl text-gray-200 mb-8 leading-relaxed">
               Leading manufacturer of high-quality precision machine components, metal washers, springs, and pipe fittings.
-              Serving industries with excellence since 2008.
+              Serving industries with excellence since 2016.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link href="/products">

@@ -172,7 +172,7 @@ const About = () => {
                             <ShinyText text="About Techno Mech Engineers" disabled={false} speed={3} className="custom-class" mode="dark" />
                         </h1>
                         <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
-                            Your trusted partner in precision engineering and manufacturing excellence since 2008
+                            Your trusted partner in precision engineering and manufacturing excellence since 2016
                         </p>
                     </div>
                 </div>
@@ -187,7 +187,7 @@ const About = () => {
                             </h2>
                             <div className="space-y-4 text-gray-700 leading-relaxed">
                                 <p>
-                                    Founded in 2008, Techno Mech Engineers began as a small precision engineering workshop in Hyderabad
+                                    Founded in 2016, Techno Mech Engineers began as a small precision engineering workshop in Hyderabad
                                     with a vision to deliver world-class machine components to Indian industries. Over the years, we have
                                     grown into a leading manufacturer trusted by clients across multiple sectors.
                                 </p>
@@ -221,9 +221,9 @@ const About = () => {
                 </div>
             </section>
 
-            <section className="py-20 bg-gray-50 mission-vision-section">
-                <div className="max-w-7xl mx-auto px-4 md:px-8">
-                    <div className="grid md:grid-cols-2 gap-8">
+            <section className="py-24 bg-gray-50 mission-vision-section">
+                <div className="max-w-9xl mx-auto px-4 md:px-24">
+                    <div className="grid md:grid-cols-2 gap-16">
                         <div className="bg-white p-8 rounded-lg shadow-lg mission-vision-card relative overflow-hidden">
                             <div className="flex items-center gap-4 mb-6 relative z-10">
                                 <div className="w-16 h-16 bg-[#DC143C] rounded-full flex items-center justify-center shrink-0">

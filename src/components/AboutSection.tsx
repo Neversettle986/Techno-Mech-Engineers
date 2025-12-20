@@ -72,7 +72,7 @@ export default function AboutSection() {
                             <ShinyText text="Precision Manufacturing" disabled={false} speed={3} className="custom-class" mode="light" />
                         </h2>
                         <p className="text-gray-700 mb-4 leading-relaxed">
-                            Established in 2008, Techno Mech Engineers has grown to become a trusted name in precision engineering
+                            Established in 2016, Techno Mech Engineers has grown to become a trusted name in precision engineering
                             and manufacturing. We specialize in producing high-quality machine components, metal washers, springs,
                             and pipe fittings for diverse industrial applications.
                         </p>
