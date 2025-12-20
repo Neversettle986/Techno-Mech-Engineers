@@ -88,19 +88,7 @@ const About = () => {
             ease: "power3.out"
         });
 
-        // Core Values Animation
-        gsap.from(".value-item", {
-            scrollTrigger: {
-                trigger: ".values-section",
-                start: "top 75%",
-                toggleActions: "play none none none"
-            },
-            y: 30,
-            opacity: 0,
-            duration: 0.5,
-            stagger: 0.1,
-            ease: "power3.out"
-        });
+
 
         // Why Choose Us Animation
         gsap.from(".why-us-image", {
