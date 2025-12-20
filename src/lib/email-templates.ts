@@ -87,7 +87,7 @@ export const generateUserEmail = (name: string, details: any): string => {
                 <p class="text">In the meantime, we invite you to explore our comprehensive range of products and services.</p>
 
                 <div class="btn-container">
-                    <a href="https://technomechengineers.in/products" class="button">View Our Products</a>
+                    <a href="https://technomechengineers.in/products" class="button" style="color: #ffffff !important; text-decoration: none;">View Our Products</a>
                 </div>
             </div>
             <div class="footer">
