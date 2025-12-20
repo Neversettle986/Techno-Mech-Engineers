@@ -225,12 +225,14 @@ const About = () => {
                 <div className="max-w-7xl mx-auto px-4 md:px-8">
                     <div className="grid md:grid-cols-2 gap-8">
                         <div className="bg-white p-8 rounded-lg shadow-lg mission-vision-card relative overflow-hidden">
-                            <div className="w-16 h-16 bg-[#DC143C] rounded-full flex items-center justify-center mb-6 relative z-10">
-                                <Target className="text-white" size={32} />
+                            <div className="flex items-center gap-4 mb-6 relative z-10">
+                                <div className="w-16 h-16 bg-[#DC143C] rounded-full flex items-center justify-center shrink-0">
+                                    <Target className="text-white" size={32} />
+                                </div>
+                                <span className="block text-3xl font-bold text-[#1F2937]">
+                                    <ShinyText text="Our Mission" disabled={false} speed={3} className="custom-class" />
+                                </span>
                             </div>
-                            <span className="block text-3xl font-bold text-[#1F2937] mb-4 relative z-10">
-                                <ShinyText text="Our Mission" disabled={false} speed={3} className="custom-class" />
-                            </span>
                             <p className="text-gray-700 leading-relaxed relative z-10">
                                 To be the preferred partner for precision-engineered components by delivering superior quality products,
                                 innovative solutions, and exceptional customer service. We strive to continuously improve our processes,
@@ -239,12 +241,14 @@ const About = () => {
                         </div>
 
                         <div className="bg-white p-8 rounded-lg shadow-lg mission-vision-card relative overflow-hidden">
-                            <div className="w-16 h-16 bg-[#DC143C] rounded-full flex items-center justify-center mb-6 relative z-10">
-                                <Eye className="text-white" size={32} />
+                            <div className="flex items-center gap-4 mb-6 relative z-10">
+                                <div className="w-16 h-16 bg-[#DC143C] rounded-full flex items-center justify-center shrink-0">
+                                    <Eye className="text-white" size={32} />
+                                </div>
+                                <span className="block text-3xl font-bold text-[#1F2937]">
+                                    <ShinyText text="Our Vision" disabled={false} speed={3} className="custom-class" />
+                                </span>
                             </div>
-                            <span className="block text-3xl font-bold text-[#1F2937] mb-4 relative z-10">
-                                <ShinyText text="Our Vision" disabled={false} speed={3} className="custom-class" />
-                            </span>
                             <p className="text-gray-700 leading-relaxed relative z-10">
                                 To establish Techno Mech Engineers as a globally recognized leader in precision engineering and manufacturing.
                                 We envision expanding our capabilities, serving international markets, and setting new industry benchmarks for
@@ -272,7 +276,7 @@ const About = () => {
                                 key={index}
                                 className="text-center group value-item bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all"
                             >
-                                <div className="w-20 h-20 mx-auto mb-4 bg-[#DC143C] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 relative z-10">
+                                <div className="w-16 h-16 mx-auto mb-4 bg-[#DC143C] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 relative z-10">
                                     <value.icon className="text-white" size={36} />
                                 </div>
                                 <span className="block text-xl font-semibold text-[#1F2937] mb-3 relative z-10">{value.title}</span>
