@@ -35,9 +35,11 @@ export const generateUserEmail = (name: string, details: any): string => {
                 <table class="header-content" role="presentation">
                     <tr>
                         <td class="logo-cell">
-                            <img src="https://technomechengineers.in/assets/logo.jpg" alt="Techno Mech Engineers" class="logo">
+                            <a href="https://technomechengineers.in" target="_blank" style="text-decoration: none;">
+                                <img src="https://technomechengineers.in/assets/logo.jpg" alt="Techno Mech Engineers" class="logo" width="80" height="80" style="border:0; pointer-events: none;">
+                            </a>
                         </td>
-                        <td class="text-cell">
+                        <td class="text-cell" style="padding-right: 10px;">
                             Thank You<br>For Choosing Us
                         </td>
                     </tr>
