@@ -68,9 +68,7 @@ const Navbar = () => {
                             <span className="hidden sm:inline text-xs md:text-sm">technomech6@gmail.com</span>
                         </a>
                     </div>
-                    <div className="text-[10px] md:text-xs font-medium absolute right-4">
-                        GST: 36ABCDE1234F1Z5
-                    </div>
+
                 </div>
             </div>
 

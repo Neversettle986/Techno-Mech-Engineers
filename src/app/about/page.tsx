@@ -221,12 +221,12 @@ const About = () => {
                 </div>
             </section>
 
-            <section className="py-24 bg-gray-50 mission-vision-section">
+            <section className="py-16 bg-gray-50 mission-vision-section">
                 <div className="max-w-9xl mx-auto px-4 md:px-24">
                     <div className="grid md:grid-cols-2 gap-16">
                         <div className="bg-white p-8 rounded-lg shadow-lg mission-vision-card relative overflow-hidden">
-                            <div className="flex items-center gap-4 mb-6 relative z-10">
-                                <div className="w-16 h-16 bg-[#DC143C] rounded-full flex items-center justify-center shrink-0">
+                            <div className="flex items-center gap-3 mb-8 relative z-10">
+                                <div className="w-14 h-14 bg-[#DC143C] rounded-full flex items-center justify-center shrink-0">
                                     <Target className="text-white" size={32} />
                                 </div>
                                 <span className="block text-3xl font-bold text-[#1F2937]">
@@ -241,8 +241,8 @@ const About = () => {
                         </div>
 
                         <div className="bg-white p-8 rounded-lg shadow-lg mission-vision-card relative overflow-hidden">
-                            <div className="flex items-center gap-4 mb-6 relative z-10">
-                                <div className="w-16 h-16 bg-[#DC143C] rounded-full flex items-center justify-center shrink-0">
+                            <div className="flex items-center gap-3 mb-8 relative z-10">
+                                <div className="w-14 h-14 bg-[#DC143C] rounded-full flex items-center justify-center shrink-0">
                                     <Eye className="text-white" size={32} />
                                 </div>
                                 <span className="block text-3xl font-bold text-[#1F2937]">
