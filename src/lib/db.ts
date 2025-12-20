@@ -1,7 +1,5 @@
-import fs from 'fs';
-import path from 'path';
-
-const DATA_FILE = path.join(process.cwd(), 'data', 'submissions.json');
+import dbConnect from './mongoose';
+import SubmissionModel, { ISubmission } from '@/models/Submission';
 
 export interface Submission {
     id: string;
@@ -15,70 +13,67 @@ export interface Submission {
     status: 'new' | 'pending' | 'contacted';
 }
 
-export const getSubmissions = (): Submission[] => {
-    try {
-        if (!fs.existsSync(DATA_FILE)) {
-            return [];
-        }
-        const data = fs.readFileSync(DATA_FILE, 'utf-8');
-        let submissions: Submission[] = JSON.parse(data);
-
-        // Auto-update status from 'new' to 'pending' after 24 hours
-        let hasUpdates = false;
-        const now = new Date();
-        const twentyFourHoursAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000);
-
-        submissions = submissions.map(submission => {
-            if (submission.status === 'new' && new Date(submission.date) < twentyFourHoursAgo) {
-                hasUpdates = true;
-                return { ...submission, status: 'pending' };
-            }
-            return submission;
-        });
-
-        if (hasUpdates) {
-            fs.writeFileSync(DATA_FILE, JSON.stringify(submissions, null, 2));
-        }
-
-        return submissions;
-    } catch (error) {
-        console.error('Error reading submissions:', error);
-        return [];
-    }
-};
-
-export const addSubmission = (submission: Omit<Submission, 'id' | 'date' | 'status'>) => {
-    const submissions = getSubmissions();
-    const newSubmission: Submission = {
-        ...submission,
-        id: Math.random().toString(36).substr(2, 9),
-        date: new Date().toISOString(),
-        status: 'new'
+const mapDocToSubmission = (doc: ISubmission): Submission => {
+    return {
+        id: doc._id.toString(),
+        name: doc.name,
+        email: doc.email,
+        phone: doc.phone,
+        company: doc.company,
+        subject: doc.subject,
+        message: doc.message,
+        date: doc.createdAt.toISOString(),
+        status: doc.status
     };
-    submissions.unshift(newSubmission);
-    fs.writeFileSync(DATA_FILE, JSON.stringify(submissions, null, 2));
-    return newSubmission;
 };
 
-export const updateSubmission = (id: string, updates: Partial<Submission>) => {
-    const submissions = getSubmissions();
-    const index = submissions.findIndex(s => s.id === id);
-    if (index !== -1) {
-        submissions[index] = { ...submissions[index], ...updates };
-        fs.writeFileSync(DATA_FILE, JSON.stringify(submissions, null, 2));
-        return submissions[index];
+export const getSubmissions = async (): Promise<Submission[]> => {
+    await dbConnect();
+    const docs = await SubmissionModel.find({}).sort({ createdAt: -1 });
+    // Check for auto-updates (logic from old db.ts moved here or handled differently?)
+    // The old logic updated 'new' to 'pending' after 24h on read.
+    // We can replicate that or skip it. Let's replicate it for consistency.
+
+    // Actually, updating on read is not ideal for Mongoose. 
+    // Let's just return the data for now. If status update is needed, it should be a separate background job or check.
+    // However, to maintain exact behavior:
+
+    const now = new Date();
+    const twentyFourHoursAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+
+    const updates = docs.filter(doc => doc.status === 'new' && doc.createdAt < twentyFourHoursAgo);
+
+    if (updates.length > 0) {
+        await SubmissionModel.updateMany(
+            { _id: { $in: updates.map(d => d._id) } },
+            { $set: { status: 'pending' } }
+        );
+        // Refresh data
+        const updatedDocs = await SubmissionModel.find({}).sort({ createdAt: -1 });
+        return updatedDocs.map(mapDocToSubmission);
     }
-    return null;
+
+    return docs.map(mapDocToSubmission);
 };
 
-export const deleteSubmission = (id: string) => {
-    let submissions = getSubmissions();
-    submissions = submissions.filter(s => s.id !== id);
-    fs.writeFileSync(DATA_FILE, JSON.stringify(submissions, null, 2));
+export const addSubmission = async (submission: Omit<Submission, 'id' | 'date' | 'status'>): Promise<Submission> => {
+    await dbConnect();
+    const doc = await SubmissionModel.create(submission);
+    return mapDocToSubmission(doc);
 };
 
-export const deleteSubmissions = (ids: string[]) => {
-    let submissions = getSubmissions();
-    submissions = submissions.filter(s => !ids.includes(s.id));
-    fs.writeFileSync(DATA_FILE, JSON.stringify(submissions, null, 2));
+export const updateSubmission = async (id: string, updates: Partial<Submission>): Promise<Submission | null> => {
+    await dbConnect();
+    const doc = await SubmissionModel.findByIdAndUpdate(id, updates, { new: true });
+    return doc ? mapDocToSubmission(doc) : null;
+};
+
+export const deleteSubmission = async (id: string): Promise<void> => {
+    await dbConnect();
+    await SubmissionModel.findByIdAndDelete(id);
+};
+
+export const deleteSubmissions = async (ids: string[]): Promise<void> => {
+    await dbConnect();
+    await SubmissionModel.deleteMany({ _id: { $in: ids } });
 };

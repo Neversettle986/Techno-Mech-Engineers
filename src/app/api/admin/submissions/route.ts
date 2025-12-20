@@ -13,7 +13,7 @@ export async function GET() {
     if (!(await isAuthenticated())) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
-    const submissions = getSubmissions();
+    const submissions = await getSubmissions();
     return NextResponse.json(submissions);
 }
 
@@ -24,7 +24,7 @@ export async function PUT(request: Request) {
     try {
         const body = await request.json();
         const { id, ...updates } = body;
-        const updated = updateSubmission(id, updates);
+        const updated = await updateSubmission(id, updates);
         if (updated) {
             return NextResponse.json({ success: true, submission: updated });
         }
@@ -43,7 +43,7 @@ export async function DELETE(request: Request) {
         const id = searchParams.get('id');
 
         if (id) {
-            deleteSubmission(id);
+            await deleteSubmission(id);
             return NextResponse.json({ success: true });
         }
 
@@ -52,7 +52,7 @@ export async function DELETE(request: Request) {
         console.log('DELETE request body:', body);
         if (body && Array.isArray(body.ids)) {
             console.log('Deleting IDs:', body.ids);
-            deleteSubmissions(body.ids);
+            await deleteSubmissions(body.ids);
             return NextResponse.json({ success: true });
         }
 

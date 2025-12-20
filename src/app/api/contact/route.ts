@@ -62,7 +62,7 @@ export async function POST(request: Request) {
             }
         }
 
-        const submission = addSubmission(body);
+        const submission = await addSubmission(body);
 
         return NextResponse.json({ success: true, submission });
     } catch (error) {
