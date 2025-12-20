@@ -7,7 +7,7 @@ import { Toaster } from "@/components/ui/toaster";
 // import Chatbot from "@/components/Chatbot";
 import LenisScroller from "@/components/LenisScroller";
 import ClickSpark from "@/components/ClickSpark";
-import FallBeamBackground from "@/components/FallBeamBackground";
+
 import PageTransition from "@/components/PageTransition";
 import CookieConsent from "@/components/CookieConsent";
 
@@ -92,7 +92,7 @@ export default function RootLayout({
                     ></iframe>
                 </noscript>
 
-                <FallBeamBackground lineCount={15} beamColorClass="red-500" className="fixed inset-0 z-[50] opacity-20 pointer-events-none" />
+
                 <LenisScroller>
                     <ClickSpark sparkColor="#DC143C" sparkSize={10} sparkRadius={20} sparkCount={8} duration={400}>
                         <div className="min-h-screen bg-transparent flex flex-col relative z-10">
