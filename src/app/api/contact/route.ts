@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 import { addSubmission } from '@/lib/db';
+import { sendEmail } from '@/lib/email';
+import { generateUserEmail, generateAdminEmail } from '@/lib/email-templates';
 
 export async function POST(request: Request) {
     try {
@@ -63,6 +65,31 @@ export async function POST(request: Request) {
         }
 
         const submission = await addSubmission(body);
+
+        // Send Email Notifications (Fire and Forget or Await safely)
+        const adminEmail = process.env.ADMIN_EMAIL;
+        const emailPromises = [];
+
+        // 1. User Confirmation Email
+        if (body.email) {
+            emailPromises.push(sendEmail({
+                to: body.email,
+                subject: 'We received your message - Techno Mech Engineers',
+                html: generateUserEmail(body.name)
+            }));
+        }
+
+        // 2. Admin Notification Email
+        if (adminEmail) {
+            emailPromises.push(sendEmail({
+                to: adminEmail,
+                subject: `New Contact Form: ${body.subject}`,
+                html: generateAdminEmail(submission)
+            }));
+        }
+
+        // Execute email sending without blocking the response too long, or handle errors silently
+        await Promise.allSettled(emailPromises);
 
         return NextResponse.json({ success: true, submission });
     } catch (error) {
