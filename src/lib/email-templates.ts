@@ -9,8 +9,11 @@ export const generateUserEmail = (name: string, details: any): string => {
         <style>
             body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; background-color: #f9f9f9; }
             .container { max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); overflow: hidden; }
-            .header { padding: 30px; text-align: center; border-bottom: 3px solid #DC143C; background-color: #ffffff; }
-            .logo { max-height: 70px; width: auto; }
+            .header { padding: 30px; background-color: #ffffff; border-bottom: 3px solid #DC143C; }
+            .header-content { width: 100%; border-collapse: collapse; }
+            .logo-cell { text-align: left; vertical-align: middle; width: 40%; }
+            .text-cell { text-align: right; vertical-align: middle; width: 60%; font-size: 20px; font-weight: bold; color: #DC143C; text-transform: uppercase; letter-spacing: 1px; }
+            .logo { max-height: 80px; width: auto; display: block; }
             .content { padding: 40px; }
             .greeting { font-size: 22px; color: #111; margin-bottom: 20px; font-weight: 600; }
             .text { color: #555; margin-bottom: 15px; font-size: 16px; }
@@ -29,7 +32,16 @@ export const generateUserEmail = (name: string, details: any): string => {
     <body>
         <div class="container">
             <div class="header">
-                 <img src="https://technomechengineers.in/assets/logo.jpg" alt="Techno Mech Engineers" class="logo">
+                <table class="header-content" role="presentation">
+                    <tr>
+                        <td class="logo-cell">
+                            <img src="https://technomechengineers.in/assets/logo.jpg" alt="Techno Mech Engineers" class="logo">
+                        </td>
+                        <td class="text-cell">
+                            Thank You<br>For Choosing Us
+                        </td>
+                    </tr>
+                </table>
             </div>
             <div class="content">
                 <div class="greeting">Hello ${name},</div>
