@@ -23,12 +23,12 @@ const Footer = () => {
                         <span className="text-lg font-semibold mb-4 block text-white">
                             <ShinyText text="Quick Links" disabled={false} speed={3} className="custom-class" mode="dark" />
                         </span>
-                        <div className="space-y-2">
-                            <Link href="/" className="block text-sm text-gray-300 hover:text-[#DC143C] transition-colors">Home</Link>
-                            <Link href="/about" className="block text-sm text-gray-300 hover:text-[#DC143C] transition-colors">About Us</Link>
-                            <Link href="/products" className="block text-sm text-gray-300 hover:text-[#DC143C] transition-colors">Products</Link>
-                            <Link href="/services" className="block text-sm text-gray-300 hover:text-[#DC143C] transition-colors">Services</Link>
-                            <Link href="/contact" className="block text-sm text-gray-300 hover:text-[#DC143C] transition-colors">Contact</Link>
+                        <div className="space-y-3">
+                            <Link href="/" className="w-fit block text-sm text-gray-300 hover:text-[#DC143C] transition-colors">Home</Link>
+                            <Link href="/about" className="w-fit block text-sm text-gray-300 hover:text-[#DC143C] transition-colors">About Us</Link>
+                            <Link href="/products" className="w-fit block text-sm text-gray-300 hover:text-[#DC143C] transition-colors">Products</Link>
+                            <Link href="/services" className="w-fit block text-sm text-gray-300 hover:text-[#DC143C] transition-colors">Services</Link>
+                            <Link href="/contact" className="w-fit block text-sm text-gray-300 hover:text-[#DC143C] transition-colors">Contact</Link>
                         </div>
                     </div>
 
@@ -36,7 +36,7 @@ const Footer = () => {
                         <span className="text-lg font-semibold mb-4 block text-white">
                             <ShinyText text="Our Products" disabled={false} speed={3} className="custom-class" mode="dark" />
                         </span>
-                        <div className="space-y-2">
+                        <div className="space-y-3">
                             <p className="text-sm text-gray-300">Precision Machine Components</p>
                             <p className="text-sm text-gray-300">Metal Washers</p>
                             <p className="text-sm text-gray-300">Metal Springs</p>
