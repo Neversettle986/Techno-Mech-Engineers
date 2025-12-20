@@ -40,7 +40,9 @@ export const generateUserEmail = (name: string, details: any): string => {
                             </a>
                         </td>
                         <td class="text-cell" style="padding-right: 10px;">
-                            Thank You<br>For Choosing Us
+                            <div style="display: inline-block; text-align: left;">
+                                Thank You<br>For Choosing Us
+                            </div>
                         </td>
                     </tr>
                 </table>
