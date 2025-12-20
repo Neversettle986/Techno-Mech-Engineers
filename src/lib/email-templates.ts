@@ -110,7 +110,7 @@ export const generateAdminEmail = (submission: any): string => {
         <style>
             body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; background-color: #f4f4f4; }
             .container { max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); overflow: hidden; }
-            .header { background-color: #1a1a1a; color: white; padding: 20px; text-align: center; }
+            .header { background-color: #111111; color: white; padding: 20px; text-align: center; border-bottom: 3px solid #DC143C; }
             .content { padding: 30px; }
             .row { border-bottom: 1px solid #eee; padding: 12px 0; display: flex; }
             .label { font-weight: bold; width: 100px; color: #555; }
