@@ -86,6 +86,41 @@ export default function RootLayout({
                         `,
                     }}
                 />
+                <Script
+                    id="schema-org"
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                        {
+                          "@context": "https://schema.org",
+                          "@type": "Organization",
+                          "name": "Techno Mech Engineers",
+                          "url": "https://technomechengineers.in",
+                          "logo": "https://technomechengineers.in/assets/logo.jpg",
+                          "description": "Precision Engineering Solutions in Hyderabad",
+                          "foundingDate": "2016",
+                          "address": {
+                            "@type": "PostalAddress",
+                            "streetAddress": "1-9-121/E/C, opp. to Speck Systems, EC Complex, Kushaiguda",
+                            "addressLocality": "Hyderabad",
+                            "addressRegion": "Telangana",
+                            "postalCode": "500062",
+                            "addressCountry": "IN"
+                          },
+                          "contactPoint": {
+                            "@type": "ContactPoint",
+                            "telephone": "+91-8309862581",
+                            "contactType": "customer service",
+                            "areaServed": "IN",
+                            "availableLanguage": "en"
+                          },
+                          "sameAs": [
+                            "https://technomechengineers.in"
+                          ]
+                        }
+                        `
+                    }}
+                />
             </head>
             <body className={inter.className} suppressHydrationWarning>
                 {/* Google Tag Manager (noscript) - Script 2 */}
