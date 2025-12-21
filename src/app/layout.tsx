@@ -36,7 +36,7 @@ export const metadata: Metadata = {
         apple: '/assets/logo.jpg',
     },
     verification: {
-        google: 'google-site-verification-placeholder',
+        google: 'rjIBmJTkMg4DVNxavjNrEjD4vX6kFpHYZjeKK_LqNtQ',
         other: {
             'msvalidate.01': 'bing-verification-placeholder',
         },
