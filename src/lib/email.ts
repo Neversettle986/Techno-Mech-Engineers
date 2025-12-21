@@ -26,7 +26,7 @@ export const sendEmail = async ({ to, subject, html, replyTo }: SendEmailProps) 
 
     try {
         const data = await resend.emails.send({
-            from: `Techno Mech <${fromEmail}>`,
+            from: `Techno Mech Engineers <${fromEmail}>`,
             to,
             subject,
             html,
