@@ -34,7 +34,13 @@ export const metadata: Metadata = {
     icons: {
         icon: '/assets/logo.jpg',
         apple: '/assets/logo.jpg',
-    }
+    },
+    verification: {
+        google: 'google-site-verification-placeholder',
+        other: {
+            'msvalidate.01': 'bing-verification-placeholder',
+        },
+    },
 };
 
 export default function RootLayout({
